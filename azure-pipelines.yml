@@ -1,0 +1,108 @@
+trigger:
+  - main
+  - master
+  - dev
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+  - stage: Build_and_Lint
+    displayName: 'Stage 1: Build & Lint'
+    jobs:
+      - job: BuildAndLint
+        displayName: 'Install & Lint'
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '20.x'
+            displayName: 'Install Node.js'
+
+          - script: npm ci
+            displayName: 'Clean Install Dependencies'
+
+          - script: npm run lint
+            displayName: 'Run ESLint'
+
+  - stage: IaC_Validation
+    displayName: 'Stage 2: IaC Validation'
+    jobs:
+      - job: ValidateBicep
+        displayName: 'Compile Bicep'
+        steps:
+          - script: az bicep build --file infra/main.bicep
+            displayName: 'Compile Bicep Template'
+
+  - stage: Test_and_Publish
+    displayName: 'Stage 3: Test & Publish Results'
+    jobs:
+      - job: RunTests
+        displayName: 'Jest Test Suite'
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '20.x'
+            displayName: 'Install Node.js'
+
+          - script: npm ci
+            displayName: 'Install Dependencies'
+
+          - script: npm run test:ci
+            displayName: 'Execute Jest Tests (JUnit)'
+
+          - task: PublishTestResults@2
+            inputs:
+              testResultsFormat: 'JUnit'
+              testResultsFiles: '**/junit.xml'
+              mergeTestResults: true
+              failTaskOnFailedTests: true
+              testRunTitle: 'Jest API Unit & Integration Tests'
+            displayName: 'Publish Jest Test Results'
+            condition: succeededOrFailed() # Runs even if tests fail so results are uploaded
+
+          - task: PublishCodeCoverageResults@2
+            inputs:
+              summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
+              failIfCoverageEmpty: true
+            displayName: 'Publish Code Coverage Results'
+
+  - stage: Security_Scan
+    displayName: 'Stage 4: Dependency Security Gate'
+    jobs:
+      - job: DependencyAudit
+        displayName: 'NPM Audit Scan'
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '20.x'
+            displayName: 'Install Node.js'
+
+          - script: npm ci
+            displayName: 'Install Dependencies'
+
+          - script: npm run security-check
+            displayName: 'Check High-Severity Vulnerabilities (NPM Audit)'
+
+  - stage: Publish_Artifact
+    displayName: 'Stage 5: Publish Build Artifact'
+    dependsOn: Security_Scan
+    condition: succeeded()
+    jobs:
+      - job: ArchiveAndPublish
+        displayName: 'Publish Pipeline Artifact'
+        steps:
+          - task: ArchiveFiles@2
+            inputs:
+              rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+              includeRootFolder: false
+              archiveType: 'tar'
+              archiveFile: '$(Build.ArtifactStagingDirectory)/build-package.tar.gz'
+              replaceExistingArchive: true
+            displayName: 'Archive Application Files'
+
+          - task: PublishPipelineArtifact@1
+            inputs:
+              targetPath: '$(Build.ArtifactStagingDirectory)/build-package.tar.gz'
+              artifact: 'drop'
+              publishLocation: 'pipeline'
+            displayName: 'Publish Artifact to Pipeline Drop'
