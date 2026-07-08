@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="24" failures="0" errors="0" time="3.055">
-  <testsuite name="Math Utility Functions" errors="0" failures="0" skipped="0" timestamp="2026-07-08T07:40:55" time="1.093" tests="11">
-    <testcase classname="Math Utility Functions add should add two positive numbers correctly" name="Math Utility Functions add should add two positive numbers correctly" time="0.015">
+<testsuites name="jest tests" tests="24" failures="0" errors="0" time="5.609">
+  <testsuite name="CI/CD Gate Demonstration" errors="0" failures="0" skipped="0" timestamp="2026-07-08T18:13:53" time="1.517" tests="1">
+    <testcase classname="CI/CD Gate Demonstration should deliberately fail when shouldFail is true" name="CI/CD Gate Demonstration should deliberately fail when shouldFail is true" time="0.016">
+    </testcase>
+  </testsuite>
+  <testsuite name="Math Utility Functions" errors="0" failures="0" skipped="0" timestamp="2026-07-08T18:13:53" time="1.556" tests="11">
+    <testcase classname="Math Utility Functions add should add two positive numbers correctly" name="Math Utility Functions add should add two positive numbers correctly" time="0.017">
     </testcase>
     <testcase classname="Math Utility Functions add should handle negative numbers correctly" name="Math Utility Functions add should handle negative numbers correctly" time="0.001">
     </testcase>
     <testcase classname="Math Utility Functions add should handle floating point precision correctly" name="Math Utility Functions add should handle floating point precision correctly" time="0">
     </testcase>
-    <testcase classname="Math Utility Functions subtract should subtract two numbers correctly" name="Math Utility Functions subtract should subtract two numbers correctly" time="0.002">
+    <testcase classname="Math Utility Functions subtract should subtract two numbers correctly" name="Math Utility Functions subtract should subtract two numbers correctly" time="0">
     </testcase>
-    <testcase classname="Math Utility Functions subtract should handle subtraction resulting in float values" name="Math Utility Functions subtract should handle subtraction resulting in float values" time="0">
+    <testcase classname="Math Utility Functions subtract should handle subtraction resulting in float values" name="Math Utility Functions subtract should handle subtraction resulting in float values" time="0.001">
     </testcase>
     <testcase classname="Math Utility Functions multiply should multiply two numbers correctly" name="Math Utility Functions multiply should multiply two numbers correctly" time="0.001">
     </testcase>
     <testcase classname="Math Utility Functions multiply should handle multiplying floating point numbers" name="Math Utility Functions multiply should handle multiplying floating point numbers" time="0">
     </testcase>
-    <testcase classname="Math Utility Functions divide should divide two numbers correctly" name="Math Utility Functions divide should divide two numbers correctly" time="0.001">
+    <testcase classname="Math Utility Functions divide should divide two numbers correctly" name="Math Utility Functions divide should divide two numbers correctly" time="0">
     </testcase>
-    <testcase classname="Math Utility Functions divide should divide zero by any non-zero number" name="Math Utility Functions divide should divide zero by any non-zero number" time="0">
+    <testcase classname="Math Utility Functions divide should divide zero by any non-zero number" name="Math Utility Functions divide should divide zero by any non-zero number" time="0.001">
     </testcase>
-    <testcase classname="Math Utility Functions divide should handle division by a negative number" name="Math Utility Functions divide should handle division by a negative number" time="0">
+    <testcase classname="Math Utility Functions divide should handle division by a negative number" name="Math Utility Functions divide should handle division by a negative number" time="0.001">
     </testcase>
-    <testcase classname="Math Utility Functions divide should throw an error when dividing by zero" name="Math Utility Functions divide should throw an error when dividing by zero" time="0.015">
-    </testcase>
-  </testsuite>
-  <testsuite name="CI/CD Gate Demonstration" errors="0" failures="0" skipped="0" timestamp="2026-07-08T07:40:55" time="1.342" tests="1">
-    <testcase classname="CI/CD Gate Demonstration should deliberately fail when shouldFail is true" name="CI/CD Gate Demonstration should deliberately fail when shouldFail is true" time="0.014">
+    <testcase classname="Math Utility Functions divide should throw an error when dividing by zero" name="Math Utility Functions divide should throw an error when dividing by zero" time="0.02">
     </testcase>
   </testsuite>
-  <testsuite name="Express API Integration Tests" errors="0" failures="0" skipped="0" timestamp="2026-07-08T07:40:55" time="2.37" tests="12">
-    <testcase classname="Express API Integration Tests GET / (Status/Health Check) should return 200 OK with healthy status and metadata" name="Express API Integration Tests GET / (Status/Health Check) should return 200 OK with healthy status and metadata" time="0.043">
+  <testsuite name="Express API Integration Tests" errors="0" failures="0" skipped="0" timestamp="2026-07-08T18:13:53" time="4.678" tests="12">
+    <testcase classname="Express API Integration Tests GET / (Status/Health Check) should return 200 OK with healthy status and metadata" name="Express API Integration Tests GET / (Status/Health Check) should return 200 OK with healthy status and metadata" time="0.074">
     </testcase>
-    <testcase classname="Express API Integration Tests POST /api/calculate should successfully add two numbers" name="Express API Integration Tests POST /api/calculate should successfully add two numbers" time="0.031">
+    <testcase classname="Express API Integration Tests POST /api/calculate should successfully add two numbers" name="Express API Integration Tests POST /api/calculate should successfully add two numbers" time="0.037">
     </testcase>
     <testcase classname="Express API Integration Tests POST /api/calculate should successfully divide two numbers" name="Express API Integration Tests POST /api/calculate should successfully divide two numbers" time="0.006">
     </testcase>
     <testcase classname="Express API Integration Tests POST /api/calculate should successfully subtract two numbers" name="Express API Integration Tests POST /api/calculate should successfully subtract two numbers" time="0.006">
     </testcase>
-    <testcase classname="Express API Integration Tests POST /api/calculate should successfully multiply two numbers" name="Express API Integration Tests POST /api/calculate should successfully multiply two numbers" time="0.005">
+    <testcase classname="Express API Integration Tests POST /api/calculate should successfully multiply two numbers" name="Express API Integration Tests POST /api/calculate should successfully multiply two numbers" time="0.006">
     </testcase>
-    <testcase classname="Express API Integration Tests POST /api/calculate should return 400 when parameters are missing" name="Express API Integration Tests POST /api/calculate should return 400 when parameters are missing" time="0.006">
+    <testcase classname="Express API Integration Tests POST /api/calculate should return 400 when parameters are missing" name="Express API Integration Tests POST /api/calculate should return 400 when parameters are missing" time="0.005">
     </testcase>
-    <testcase classname="Express API Integration Tests POST /api/calculate should return 400 when parameters are not numbers" name="Express API Integration Tests POST /api/calculate should return 400 when parameters are not numbers" time="0.004">
+    <testcase classname="Express API Integration Tests POST /api/calculate should return 400 when parameters are not numbers" name="Express API Integration Tests POST /api/calculate should return 400 when parameters are not numbers" time="0.005">
     </testcase>
-    <testcase classname="Express API Integration Tests POST /api/calculate should return 400 when operator is invalid" name="Express API Integration Tests POST /api/calculate should return 400 when operator is invalid" time="0.004">
+    <testcase classname="Express API Integration Tests POST /api/calculate should return 400 when operator is invalid" name="Express API Integration Tests POST /api/calculate should return 400 when operator is invalid" time="0.005">
     </testcase>
-    <testcase classname="Express API Integration Tests POST /api/calculate should return 422 when attempting to divide by zero" name="Express API Integration Tests POST /api/calculate should return 422 when attempting to divide by zero" time="0.006">
+    <testcase classname="Express API Integration Tests POST /api/calculate should return 422 when attempting to divide by zero" name="Express API Integration Tests POST /api/calculate should return 422 when attempting to divide by zero" time="0.009">
     </testcase>
-    <testcase classname="Express API Integration Tests POST /api/calculate should return 400 when JSON payload is malformed" name="Express API Integration Tests POST /api/calculate should return 400 when JSON payload is malformed" time="0.01">
+    <testcase classname="Express API Integration Tests POST /api/calculate should return 400 when JSON payload is malformed" name="Express API Integration Tests POST /api/calculate should return 400 when JSON payload is malformed" time="0.013">
     </testcase>
-    <testcase classname="Express API Integration Tests POST /api/calculate should pass non-syntax errors (like content encoding errors) to next(err)" name="Express API Integration Tests POST /api/calculate should pass non-syntax errors (like content encoding errors) to next(err)" time="0.01">
+    <testcase classname="Express API Integration Tests POST /api/calculate should pass non-syntax errors (like content encoding errors) to next(err)" name="Express API Integration Tests POST /api/calculate should pass non-syntax errors (like content encoding errors) to next(err)" time="0.012">
     </testcase>
-    <testcase classname="Express API Integration Tests 404 Route Handler should return 404 for undefined routes" name="Express API Integration Tests 404 Route Handler should return 404 for undefined routes" time="0.004">
+    <testcase classname="Express API Integration Tests 404 Route Handler should return 404 for undefined routes" name="Express API Integration Tests 404 Route Handler should return 404 for undefined routes" time="0.005">
     </testcase>
   </testsuite>
 </testsuites>
