@@ -3,7 +3,7 @@ describe('CI/CD Gate Demonstration', () => {
     // TOGGLE THIS FLAG:
     // Set to true to demonstrate pipeline blocking (the gate fires and fails).
     // Set to false to allow the CI pipeline to pass and complete successfully.
-    const shouldFail = false;
+    const shouldFail = true;
 
     if (shouldFail) {
       throw new Error(
