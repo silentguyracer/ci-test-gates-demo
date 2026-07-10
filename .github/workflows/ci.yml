@@ -10,6 +10,10 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+      issues: write
+
     strategy:
       matrix:
         node-version: [18.x, 20.x, 22.x]
@@ -48,3 +52,17 @@ jobs:
           name: build-package-node-${{ matrix.node-version }}
           path: build-artifact.tar.gz
           retention-days: 7
+
+      - name: Auto-close Linked Issue
+        if: github.event_name == 'pull_request' && matrix.node-version == '20.x' && success()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH_NAME="${{ github.head_ref }}"
+          if [[ "$BRANCH_NAME" =~ ([0-9]+) ]]; then
+            ISSUE_NUM="${BASH_REMATCH[1]}"
+            echo "Detected issue number #$ISSUE_NUM from branch name: $BRANCH_NAME"
+            gh issue close "$ISSUE_NUM" --comment "Automatically closed by GitHub Actions CI pipeline after successful validation checks on branch $BRANCH_NAME."
+          else
+            echo "No issue number found in branch name: $BRANCH_NAME"
+          fi
