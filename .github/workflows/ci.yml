@@ -11,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: read
+      contents: write
+      pull-requests: write
       issues: write
 
     strategy:
@@ -66,3 +67,12 @@ jobs:
           else
             echo "No issue number found in branch name: $BRANCH_NAME"
           fi
+
+      - name: Auto-merge Pull Request
+        if: github.event_name == 'pull_request' && matrix.node-version == '20.x' && success()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUM="${{ github.event.pull_request.number }}"
+          echo "Enabling auto-merge for PR #$PR_NUM..."
+          gh pr merge "$PR_NUM" --merge --auto --delete-branch
