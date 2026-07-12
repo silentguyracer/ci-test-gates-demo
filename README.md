@@ -298,5 +298,4 @@ For the AZ-400 track, it is essential to understand the architectural trade-offs
 To optimize and speed up the pipeline, we configured **dependency caching** on both platforms:
 - **GitHub Actions**: Enabled via `cache: 'npm'` in the `actions/setup-node@v4` action. On subsequent runs, npm fetches packages directly from the local runner cache rather than the npm registry, reducing dependency installation time from 20 seconds to **under 5 seconds** (a ~75% speed improvement).
 - **Azure Pipelines**: Configured caching by matching `package-lock.json` hash keys to cache the `~/.npm` cache directory, achieving a similar speedup on subsequent runs.
-
-hi
+HELLO
